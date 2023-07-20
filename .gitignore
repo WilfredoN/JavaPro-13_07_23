@@ -6,7 +6,7 @@
 
 .idea
 .git
-out/
+out
 
 # BlueJ files
 *.ctxt
