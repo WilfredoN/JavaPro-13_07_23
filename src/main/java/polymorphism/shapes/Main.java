@@ -8,6 +8,7 @@ public class Main {
                 new Square(1 + Math.random() * 50),
         };
         double total = 0;
+
         for (Shape figure : Figures) {
             System.out.println(figure.showArea());
             total += figure.showArea();
