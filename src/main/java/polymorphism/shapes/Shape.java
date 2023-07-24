@@ -1,5 +1,5 @@
 package polymorphism.shapes;
 
-interface shape {
+interface Shape {
     double showArea();
 }
