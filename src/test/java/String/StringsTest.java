@@ -51,8 +51,8 @@ class StringsTest {
       char[] guessedWordHash = new char[15];
       Arrays.fill(guessedWordHash, 0, 15, '#');
       String wordToGuess = words[1];
-      assertFalse(Strings.guessWordProcessing("ora", guessedWordHash, wordToGuess));
-      assertFalse(Strings.guessWordProcessing("aaange", guessedWordHash, wordToGuess));
-      assertTrue(Strings.guessWordProcessing("orange", guessedWordHash, wordToGuess));
+      assertFalse(GuessGame.guessWordProcessing("ora", guessedWordHash, wordToGuess));
+      assertFalse(GuessGame.guessWordProcessing("aaange", guessedWordHash, wordToGuess));
+      assertTrue(GuessGame.guessWordProcessing("orange", guessedWordHash, wordToGuess));
     }
 }

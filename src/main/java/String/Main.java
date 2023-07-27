@@ -7,6 +7,6 @@ public class Main {
         System.out.println("2)\nSource - Apollo\nTarget - pollo\nResult - " + Strings.findWordPosition("Apollo", "pollo"));
         System.out.println("3)\nSource - World\nTarget - dlroW\nResult - " + Strings.stringReverse("World"));
         System.out.println("4)\nSource - Ollo\nTarget - true\nResult - " + Strings.isPalindrome("Ollo"));
-        System.out.println(Strings.guessWordInput(1));
+        System.out.println(GuessGame.guessWordInput(1));
      }
 }
