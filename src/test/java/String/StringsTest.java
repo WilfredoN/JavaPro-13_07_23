@@ -40,4 +40,8 @@ class StringsTest {
         boolean result = Strings.isPalindrome("Allo");
         assertFalse(result);
     }
+    @Test
+    void shouldToGuessTheWord() {
+       String result =
+    }
 }

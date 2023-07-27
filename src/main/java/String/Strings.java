@@ -30,15 +30,15 @@ public class Strings {
          }
          return true;
     }
-    public static boolean guessWord() {
-        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado" , "broccoli", "carrot", "cherry",
+    public static boolean guessWord(int index) {
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry",
                 "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom",
                 "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
-        String wordToGuess = words[(int) (Math.random() * words.length)];
+        String wordToGuess = words[index];   //words[(int) (Math.random() * words.length)];
         char[] guessedWordHash = wordToGuess.toCharArray();
         Arrays.fill(guessedWordHash, '#');
         Scanner sc = new Scanner(System.in);
-        System.out.println("Слово загадане! \n" + Arrays.toString(guessedWordHash) + "\n" + Arrays.toString(wordToGuess.toCharArray()));
+        System.out.println("Слово загадане! \n" + Arrays.toString(guessedWordHash));// + "\n" + Arrays.toString(wordToGuess.toCharArray()));
         while (true) {
             System.out.print("Вгадайте слово: ");
             String answer = sc.nextLine();
@@ -46,10 +46,10 @@ public class Strings {
                 System.out.println("Ви вгадали слово!");
                 break;
             }
-                for (int i = 0; i < guessedWordHash.length - 1; i++)
-                    if (answer.charAt(i) == Arrays.toString(wordToGuess.toCharArray()).charAt(i))
-                        guessedWordHash[i] = answer.charAt(i);
-                System.out.println(guessedWordHash);
+            for (int i = 0; i < answer.length(); i++)
+                if (answer.charAt(i) == wordToGuess.toCharArray()[i])
+                    guessedWordHash[i] = answer.charAt(i);
+            System.out.println(guessedWordHash);
         }
         return true;
     }
