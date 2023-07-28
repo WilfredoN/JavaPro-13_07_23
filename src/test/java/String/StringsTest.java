@@ -2,8 +2,6 @@ package String;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringsTest {
@@ -48,11 +46,11 @@ class StringsTest {
       String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry",
                 "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom",
                 "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
-      char[] guessedWordHash = new char[15];
-      Arrays.fill(guessedWordHash, 0, 15, '#');
       String wordToGuess = words[1];
-      assertFalse(GuessGame.guessWordProcessing("ora", guessedWordHash, wordToGuess));
-      assertFalse(GuessGame.guessWordProcessing("aaange", guessedWordHash, wordToGuess));
-      assertTrue(GuessGame.guessWordProcessing("orange", guessedWordHash, wordToGuess));
+      StringBuilder hint = new StringBuilder();
+      assertFalse(GuessGame.guessWordProcessing("apple", wordToGuess, hint).result());
+      assertFalse(GuessGame.guessWordProcessing("lemon", wordToGuess, hint).result());
+      assertFalse(GuessGame.guessWordProcessing("avocado", wordToGuess, hint).result());
+      assertTrue(GuessGame.guessWordProcessing("orange", wordToGuess, hint).result());
     }
 }
