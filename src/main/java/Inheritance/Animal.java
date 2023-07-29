@@ -1,4 +1,4 @@
-package inheritance;
+package Inheritance;
 
 public abstract class Animal {
     private static int animalCount;

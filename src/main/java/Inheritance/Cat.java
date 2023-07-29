@@ -1,4 +1,4 @@
-package inheritance;
+package Inheritance;
 
 public class Cat extends Animal {
     String name;

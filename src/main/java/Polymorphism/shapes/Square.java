@@ -1,4 +1,4 @@
-package polymorphism.shapes;
+package Polymorphism.shapes;
 
 
 public class Square implements Shape {

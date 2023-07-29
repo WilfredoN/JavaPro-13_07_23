@@ -1,4 +1,4 @@
-package polymorphism.obstacle;
+package Polymorphism.obstacle;
 
 public class Main {
     public static void main(String[] args) {
