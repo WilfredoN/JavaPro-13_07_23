@@ -1,4 +1,4 @@
-package polymorphism.obstacle;
+package Polymorphism.obstacle;
 
 public class Member {
     String name;
