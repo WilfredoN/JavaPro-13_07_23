@@ -1,7 +1,4 @@
-package String;
-
-import java.util.Arrays;
-import java.util.Scanner;
+package string;
 
 public class Strings {
     public static int findSymbolOccurance(String source, char target) {

@@ -1,4 +1,4 @@
-package String;
+package string;
 
 
 import java.util.Arrays;
@@ -7,20 +7,20 @@ import java.util.Scanner;
 public class GuessGame {
     public record GuessResult(boolean result, String hint) {
     }
-
-    private static int hintCounter = 0;
-
-    public static GuessResult guessWordProcessing(String answer, String wordToGuess, StringBuilder hint) {
+    public static char[] hint = {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'};
+    public static GuessResult guessWordProcessing(String answer, String wordToGuess) {
         if (Arrays.equals(answer.toCharArray(), wordToGuess.toCharArray())) {
             System.out.println("Ви вгадали слово " + wordToGuess + "!");
             return new GuessResult(true, "");
         }
-        if (hintCounter < wordToGuess.length()) {
-            hint.append(wordToGuess.charAt(hintCounter));
-            hintCounter++;
-        }
-        System.out.println(hint);
-        return new GuessResult(false, hint.toString());
+            for (int i = 0; i < answer.length() && i < wordToGuess.length(); i++) {
+                if (answer.toCharArray()[i] == wordToGuess.toCharArray()[i]) {
+                    hint[i] = (wordToGuess.charAt(i));
+                }
+            }
+            System.out.println(hint);
+            return new GuessResult(false, Arrays.toString(hint));
+
     }
 
     public static String main(int index) {
@@ -30,11 +30,10 @@ public class GuessGame {
         String wordToGuess = words[index];
         System.out.println("Слово загадане!");
         Scanner sc = new Scanner(System.in);
-        StringBuilder hint = new StringBuilder();
         while (true) {
             System.out.print("Вгадайте слово: ");
             String answer = sc.nextLine();
-            GuessResult result = guessWordProcessing(answer, wordToGuess, hint);
+            GuessResult result = guessWordProcessing(answer, wordToGuess);
             if (result.result()) break;
         }
         return wordToGuess;
