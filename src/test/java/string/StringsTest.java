@@ -49,7 +49,6 @@ class StringsTest {
 
     @Test
     void shouldToGuessTheWord() {
-        //args String answer, char[] guessedWordHash, String wordToGuess
         String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry",
                 "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom",
                 "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
@@ -59,5 +58,16 @@ class StringsTest {
         assertFalse(GuessGame.guessWordProcessing("apricot", wordToGuess).result());
         assertFalse(GuessGame.guessWordProcessing("aaaageee", wordToGuess).result());
         assertTrue(GuessGame.guessWordProcessing("orange", wordToGuess).result());
+    }
+    @Test
+    void shouldToCheckTheHints() {
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry",
+                "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom",
+                "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        String wordToGuess = words[1];
+        assertEquals("o#################", GuessGame.guessWordProcessing("oooooo", wordToGuess).hint());
+        assertEquals("ora###############", GuessGame.guessWordProcessing("araa", wordToGuess).hint());
+        assertEquals("ora###############", GuessGame.guessWordProcessing("apricot", wordToGuess).hint());
+        assertEquals("ora#ge############", GuessGame.guessWordProcessing("aaaageee", wordToGuess).hint());
     }
 }

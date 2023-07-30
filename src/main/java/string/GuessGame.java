@@ -19,7 +19,7 @@ public class GuessGame {
                 }
             }
             System.out.println(hint);
-            return new GuessResult(false, Arrays.toString(hint));
+            return new GuessResult(false, new String(hint));
 
     }
 
@@ -35,6 +35,7 @@ public class GuessGame {
             String answer = sc.nextLine();
             GuessResult result = guessWordProcessing(answer, wordToGuess);
             if (result.result()) break;
+            else System.out.println("Ви не вгадали, ваш результат: " + result.hint());
         }
         return wordToGuess;
     }
