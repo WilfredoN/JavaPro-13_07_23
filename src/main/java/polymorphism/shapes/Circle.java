@@ -1,4 +1,4 @@
-package Polymorphism.shapes;
+package polymorphism.shapes;
 
 
 public class Circle implements Shape {
