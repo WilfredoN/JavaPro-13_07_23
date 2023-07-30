@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class ArrayDataException extends Exception {
     int i, j;

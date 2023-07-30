@@ -1,4 +1,4 @@
-package Polymorphism.shapes;
+package polymorphism.shapes;
 
 interface Shape {
     double showArea();

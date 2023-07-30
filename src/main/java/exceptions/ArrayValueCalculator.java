@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 public class ArrayValueCalculator {
     public static int doCalc(String[][] ar) throws ArraySizeException, ArrayDataException {
         int sumReCheck = 0;
