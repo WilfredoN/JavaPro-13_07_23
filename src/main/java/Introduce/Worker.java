@@ -1,4 +1,4 @@
-package introduce;
+package Introduce;
 public class Worker {
     private final String fullName;
     private final String workerPosition;
