@@ -2,7 +2,7 @@ package collections.lists;
 
 public class Occurances {
     String name;
-    int occuranceCount = 0;
+    int occuranceCount;
 
     public Occurances(String name, int occuranceCount) {
         this.name = name;
