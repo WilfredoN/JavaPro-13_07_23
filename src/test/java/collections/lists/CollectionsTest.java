@@ -59,6 +59,6 @@ class CollectionsTest {
         resultToCompare.add(new Occurances("dog", 4));
         resultToCompare.add(new Occurances("panda", 1));
         List<Occurances> result = Collections.findOccurance(array);
-        assertEquals(String.valueOf(result), String.valueOf(resultToCompare));
+        assertEquals(result, resultToCompare);
     }
 }
