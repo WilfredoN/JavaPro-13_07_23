@@ -29,7 +29,7 @@ class CollectionsTest {
     void shouldToReturnArrayWithoutDuplicates() {
         List<Integer> array = Arrays.asList(1,1,3,3,6,6,4,3,3);
         List<Integer> arrayResult = Arrays.asList(1,3,4,6);
-        List<Integer> result = Collections.findUnique(array);
+        List<Integer> result = Collections.findUniqueInteger(array);
         assertEquals(arrayResult, result);
     }
     @Test
