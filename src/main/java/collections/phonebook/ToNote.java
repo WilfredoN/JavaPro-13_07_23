@@ -1,9 +1,12 @@
 package collections.phonebook;
 
+import java.util.List;
+
 public class ToNote {
-    private String name;
-    private String phoneNumber;
-    public ToNote(String name, String phoneNumber) {
+    private final String name;
+    private final List<String> phoneNumber;
+
+    public ToNote(String name, List<String> phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
     }
@@ -12,15 +15,14 @@ public class ToNote {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoneNumber() {
+    public List<String> getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    @Override
+    public String toString() {
+        return "name='" + name + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                '}';
     }
 }
