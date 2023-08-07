@@ -1,4 +1,4 @@
-package Introduce;
+package introduce;
 
 public class Car {
     private void startElectricity(){}
