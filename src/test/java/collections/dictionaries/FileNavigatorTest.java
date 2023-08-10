@@ -15,7 +15,7 @@ class FileNavigatorTest {
     }
 
     @Test
-    void shouldToTestFilterBySize() {
+    void shouldToTestFilterBySize() throws WrongPathException {
         FileData file = new FileData("wawda.bat", 60, "/path/to/file");
         FileData file1 = new FileData("awdaw.txt", 40, "/path/to/file1");
         FileData file2 = new FileData("ere.zip", 3300, "/path/to/file2");
@@ -29,7 +29,7 @@ class FileNavigatorTest {
     }
 
     @Test
-    void shouldToAddAndFindFiles() {
+    void shouldToAddAndFindFiles() throws WrongPathException {
         FileData file = new FileData("file.txt", 20, "/path/to/file");
         FileData file2 = new FileData("file.bat", 10, "/path/to/file2");
         nav.add("/path/to/file", file);
@@ -39,7 +39,7 @@ class FileNavigatorTest {
     }
 
     @Test
-    void shouldToRemoveFile() {
+    void shouldToRemoveFile() throws WrongPathException {
         FileData file = new FileData("wawda.bat", 60, "/path/to/file");
         FileData file1 = new FileData("awdaw.txt", 40, "/path/to/file1");
         FileData file2 = new FileData("ere.zip", 3300, "/path/to/file2");
@@ -53,7 +53,7 @@ class FileNavigatorTest {
     }
 
     @Test
-    void shouldToSortBySize() {
+    void shouldToSortBySize() throws WrongPathException {
         FileData file = new FileData("wawda.bat", 60, "/path/to/file");
         FileData file1 = new FileData("awdaw.txt", 40, "/path/to/file1");
         FileData file2 = new FileData("ere.zip", 3300, "/path/to/file2");
@@ -69,12 +69,10 @@ class FileNavigatorTest {
     }
 
     @Test
-    void shouldToTestConsistency() {
+    void shouldToTestConsistency() throws WrongPathException {
         FileData file = new FileData("file.txt", 20, "/path/to/file");
         FileData file2 = new FileData("file.bat", 10, "/path/to/file2");
-        nav.add("/path/to/file", file);
-        nav.add("/path/another/file2", file2);
-        assertTrue(nav.consistencyCheck("/path/to/file", file));
-        assertFalse(nav.consistencyCheck("/path/to/file2", file));
+        Throwable res = assertThrows(WrongPathException.class, () -> nav.add("/path/another/file2", file2));
+        assertNotNull(res.getMessage());
     }
 }

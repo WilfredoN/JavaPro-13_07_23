@@ -5,9 +5,11 @@ import java.util.*;
 public class FileNavigator {
     public Map<String, List<FileData>> files = new HashMap<>();
 
-    public void add(String path, FileData data) {
-        if (!files.containsKey(path)) {
+    public void add(String path, FileData data) throws WrongPathException {
+        if (!files.containsKey(path) && path.equals(data.getFilePath())) {
             files.put(path, new ArrayList<>());
+        } else {
+            throw new WrongPathException(path);
         }
         files.get(path).add(data);
     }
@@ -39,7 +41,7 @@ public class FileNavigator {
         return sortedData;
     }
 
-    public boolean consistencyCheck(String path, FileData fileData) {
+/*    public boolean consistencyCheck(String path, FileData fileData) {
         return path.equals(fileData.getFilePath());
-    }
+    }*/
 }
