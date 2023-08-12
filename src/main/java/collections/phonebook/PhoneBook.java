@@ -2,7 +2,6 @@ package collections.phonebook;
 
 import java.util.*;
 
-
 public class PhoneBook {
     private final List<ToNote> records = new ArrayList<>();
 
