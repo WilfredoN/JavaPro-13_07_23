@@ -3,7 +3,7 @@ package collections.coffee.order;
 import java.util.*;
 
 public class CoffeeOrderBoard {
-    TreeMap<Integer, String> orders = new TreeMap<>();
+    final TreeMap<Integer, String> orders = new TreeMap<>();
 
     public void add(int orderNumber, String name) throws DuplicateNumberException {
         if (!orders.containsKey(orderNumber)) {
