@@ -1,6 +1,6 @@
 package collections.coffee.order;
 
-import java.util.TreeMap;
+import java.util.*;
 
 public class CoffeeOrderBoard {
     final TreeMap<Integer, String> orders = new TreeMap<>();
@@ -25,12 +25,14 @@ public class CoffeeOrderBoard {
         }
     }
 
-    public void draw(CoffeeOrderBoard board) {
-        System.out.println(
-                "=============\n" +
-                        "Num | Name");
-        for (int order : board.orders.keySet()) {
-            System.out.println(order + " | " + board.orders.get(order));
+    public List<Order> draw() {
+        List<Order> orderList = new ArrayList<>();
+        for (Map.Entry<Integer, String> entry : orders.entrySet()) {
+            int orderNumber = entry.getKey();
+            String name = entry.getValue();
+            Order order = new Order(orderNumber, name);
+            orderList.add(order);
         }
+        return orderList;
     }
 }

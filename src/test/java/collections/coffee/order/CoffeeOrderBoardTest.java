@@ -3,6 +3,8 @@ package collections.coffee.order;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CoffeeOrderBoardTest {
@@ -51,5 +53,17 @@ public class CoffeeOrderBoardTest {
         assertEquals(2, orderList.orders.firstKey());
         Throwable err = assertThrows(WrongNumberToDeliver.class, () -> orderList.deliver(1));
         assertNotNull(err.getMessage());
+    }
+
+    @Test
+    void shouldToDraw() throws DuplicateNumberException {
+        orderList.add(5, "Alex");
+        orderList.add(3, "John");
+        List<Order> orders = orderList.draw();
+        assertEquals(2, orders.size());
+        assertEquals(3, orders.get(0).orderNumber());
+        assertEquals("John", orders.get(0).name());
+        assertEquals(5, orders.get(1).orderNumber());
+        assertEquals("Alex", orders.get(1).name());
     }
 }
