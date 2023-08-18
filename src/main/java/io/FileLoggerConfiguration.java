@@ -29,11 +29,11 @@ public class FileLoggerConfiguration {
         this.maxFileSize = maxFileSize;
     }
 
-    public String getfileFormat() {
+    public String getFileFormat() {
         return fileFormat;
     }
 
-    public void setfileFormat(String fileFormat) {
+    public void setFileFormat(String fileFormat) {
         this.fileFormat = fileFormat;
     }
 
