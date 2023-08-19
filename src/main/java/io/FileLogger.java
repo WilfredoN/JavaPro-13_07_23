@@ -11,21 +11,22 @@ public class FileLogger {
     private final FileLoggerConfiguration configuration;
     private File currentFileLog;
     private long currentFileSize;
-    private int newFileIndex = 0;
+    private static int newFileIndex;
 
     public FileLogger(FileLoggerConfiguration configuration) {
         this.configuration = configuration;
+        newFileIndex = 0;
         initLogFile(newFileIndex);
     }
+
 
     public String getCurrentTime() {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 
-    private File initLogFile(int index) {
+    private void initLogFile(int index) {
         currentFileLog = new File(configuration.getFilePath(), setFileName(index));
         currentFileSize = currentFileLog.length();
-
         File logDirectory = currentFileLog.getParentFile();
         if (!logDirectory.exists()) {
             if (logDirectory.mkdirs()) {
@@ -34,7 +35,6 @@ public class FileLogger {
                 System.out.println("Папка не створена на шляху - " + logDirectory.getAbsolutePath());
             }
         }
-        return currentFileLog;
     }
 
     private String setFileName(int index) {
@@ -43,46 +43,48 @@ public class FileLogger {
         return "Log_" + index + "_" + timestamp + ".txt";
     }
 
-    private void checkFileSize() throws FileSizeLimitExceededException {
-        if (currentFileSize >= configuration.getMaxFileSize()) {
-            currentFileLog = initLogFile(newFileIndex);
-            currentFileSize = 0;
+    private void checkFileSize() {
+        try {
+            if (currentFileSize >= configuration.getMaxFileSize()) {
+                throw new FileSizeLimitExceededException(currentFileLog, configuration);
+            }
+        } catch (FileSizeLimitExceededException e) {
+            System.out.println(e.getMessage());
             newFileIndex++;
-           /* if (currentFileLog == null || !currentFileLog.exists()) {
-                throw new RuntimeException("Failed to create a new log file.");
-            }*/
-
-           // throw new FileSizeLimitExceededException(currentFileLog, configuration);
+            initLogFile(newFileIndex);
         }
     }
-    //FIXME не працює функціонал створення нових файлів із заданим індексом
-    public void debug(String message) throws FileSizeLimitExceededException, IOException {
+
+    public void debug(String message) throws FileSizeLimitExceededException {
         if (configuration.getCurrentLogLevel() == LoggingLevel.DEBUG) {
             logFill("[DEBUG] " + message);
+            logFill("[INFO] " + message);
         }
     }
 
-    public void info(String message) throws FileSizeLimitExceededException, IOException {
+    public void info(String message) throws FileSizeLimitExceededException {
         if (configuration.getCurrentLogLevel() == LoggingLevel.INFO) {
             logFill("[INFO] " + message);
         }
     }
 
     private void logFill(String message) throws FileSizeLimitExceededException {
-        try {
+        try (PrintWriter write = new PrintWriter(new FileWriter(currentFileLog, true))) {
             checkFileSize();
-            try (PrintWriter write = new PrintWriter(new FileWriter(currentFileLog, true))) {
-                String readyMessage = "[" + getCurrentTime() + "]" + message;
-                write.println(readyMessage);
-                currentFileSize += readyMessage.length() + System.lineSeparator().length();
-            }
-        } catch (FileSizeLimitExceededException e) {
-            newFileIndex++;
-            initLogFile(newFileIndex);
-            currentFileSize = 0;
-            throw e;
+            String readyMessage = "[" + getCurrentTime() + "]" + message;
+            write.println(readyMessage);
+            currentFileSize += readyMessage.length() + System.lineSeparator().length();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new FileSizeLimitExceededException(currentFileLog, configuration);
         }
+    }
+
+
+    public long getCurrentFileSize() {
+        return currentFileSize;
+    }
+
+    public boolean deleteCurrentFile() {
+        return currentFileLog.delete();
     }
 }
