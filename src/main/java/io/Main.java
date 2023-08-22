@@ -8,11 +8,12 @@ public class Main {
                 "./src/main/logs/",
                 512,
                 "hillel_",
-                LoggingLevel.DEBUG
+                LoggingLevel.INFO
         );
         var fileLogger = new FileLogger(config);
         for (int i = 0; i < 30; i++) {
             fileLogger.debug("My Debug Message");
+            fileLogger.info("My info message");
         }
     }
 }

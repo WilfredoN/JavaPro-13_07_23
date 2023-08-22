@@ -44,29 +44,26 @@ public class FileLogger {
     }
 
     private void checkFileSize() {
-        try {
-            if (currentFileSize >= configuration.getMaxFileSize()) {
-                throw new FileSizeLimitExceededException(currentFileLog, configuration);
-            }
-        } catch (FileSizeLimitExceededException e) {
-            System.out.println(e.getMessage());
+        if (currentFileSize >= configuration.getMaxFileSize()) {
             newFileIndex++;
             initLogFile(newFileIndex);
         }
     }
 
     public void debug(String message) throws FileSizeLimitExceededException {
-        if (configuration.getCurrentLogLevel() == LoggingLevel.DEBUG) {
+        LoggingLevel currentLogLevel = configuration.getCurrentLogLevel();
+        if (currentLogLevel == LoggingLevel.DEBUG) {
             logFill("[DEBUG] " + message);
-            logFill("[INFO] " + message);
         }
     }
 
     public void info(String message) throws FileSizeLimitExceededException {
-        if (configuration.getCurrentLogLevel() == LoggingLevel.INFO) {
+        LoggingLevel currentLogLevel = configuration.getCurrentLogLevel();
+        if (currentLogLevel == LoggingLevel.INFO || currentLogLevel == LoggingLevel.DEBUG) {
             logFill("[INFO] " + message);
         }
     }
+
 
     private void logFill(String message) throws FileSizeLimitExceededException {
         try (PrintWriter write = new PrintWriter(new FileWriter(currentFileLog, true))) {
