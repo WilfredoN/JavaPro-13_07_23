@@ -2,7 +2,7 @@ package generics;
 
 public class Fruit {
     private final String typeOfFruit;
-    private final Float weight;
+    private final float weight;
 
     public Fruit(String typeOfFruit, Float weight) {
         this.typeOfFruit = typeOfFruit;
@@ -12,7 +12,7 @@ public class Fruit {
     public String getTypeOfFruit() {
         return typeOfFruit;
     }
-    public Float getWeight() {
+    public float getWeight() {
         return weight;
     }
 }
