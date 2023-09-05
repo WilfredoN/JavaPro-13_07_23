@@ -41,6 +41,15 @@ public class ThreadSafeList<T> implements Iterable<T> {
         }
     }
 
+    public T remove(int index) {
+        lock.writeLock().lock();
+        try {
+            return toStoreList.remove(index);
+        } finally {
+            lock.writeLock().unlock();
+        }
+    }
+
     @Override
     public Iterator<T> iterator() {
         lock.readLock().lock();
