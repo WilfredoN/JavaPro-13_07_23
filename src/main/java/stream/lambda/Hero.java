@@ -1,25 +1,12 @@
 package stream.lambda;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 
-/*
-
-String name // ім'я
-String gender // стать
-String eyeColor // колір очей
-String race // раса
-String hairColor // колір волосся
-double height // зріст
-String publisher  // видавець
-String skinColor // колір шкіри
-String alignment // добро / зло
-int weight // вага
-
- */
 public record Hero(String name, String gender, String eyeColor, String race, String hairColor, double height,
                    String publisher, String skinColor, String alignment, int weight) {
     public static double averageHeight(List<Hero> heroes) {
@@ -60,23 +47,34 @@ public record Hero(String name, String gender, String eyeColor, String race, Str
                 .entrySet().stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .limit(5)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
     }
+
 
     public static Map<String, Long> topOfHairColor(List<Hero> heroes) {
         return heroes.stream()
-                .filter(color -> color.hairColor != null)
+                .filter(color -> color.hairColor.length() > 1)
                 .collect(Collectors.groupingBy(Hero::hairColor, Collectors.counting()
                 ))
                 .entrySet().stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .limit(3)
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
     }
 
     public static String topEyeColor(List<Hero> heroes) {
         return heroes.stream()
-                .filter(color -> color.eyeColor != null)
+                .filter(color -> color.eyeColor.length() > 1)
                 .collect(Collectors.groupingBy(Hero::eyeColor, Collectors.counting()))
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
