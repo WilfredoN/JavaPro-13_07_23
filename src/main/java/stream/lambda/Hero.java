@@ -58,7 +58,7 @@ public record Hero(String name, String gender, String eyeColor, String race, Str
 
     public static Map<String, Long> topOfHairColor(List<Hero> heroes) {
         return heroes.stream()
-                .filter(color -> color.hairColor.length() > 1)
+                .filter(hero -> hero.hairColor != null && hero.hairColor.length() > 1)
                 .collect(Collectors.groupingBy(Hero::hairColor, Collectors.counting()
                 ))
                 .entrySet().stream()
@@ -74,7 +74,7 @@ public record Hero(String name, String gender, String eyeColor, String race, Str
 
     public static String topEyeColor(List<Hero> heroes) {
         return heroes.stream()
-                .filter(color -> color.eyeColor.length() > 1)
+                .filter(hero -> hero.eyeColor != null && hero.eyeColor.length() > 1)
                 .collect(Collectors.groupingBy(Hero::eyeColor, Collectors.counting()))
                 .entrySet().stream()
                 .max(Map.Entry.comparingByValue())
