@@ -58,16 +58,20 @@ public class HeroDaoImpl implements HeroDao {
 
     @Override
     public void create(Hero hero) {
-        var sql = "INSERT INTO heroes (name, gender, eyeColor, race, hairColor, height, publisher" +
-                ", skinColor, alignment, weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        var sql = """
+                "INSERT INTO heroes (name, gender, eyeColor, race, hairColor, height, publisher" +
+                ", skinColor, alignment, weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" +
+                """;
         statementConnection(hero, sql);
     }
 
     @Override
     public void update(Hero hero) {
-        var sql = "UPDATE heroes SET name = ?, gender = ?, eyeColor = ?, race = ?, " +
-                "hairColor = ?, height = ?, publisher = ?, skinColor = ?, " +
-                "alignment = ?, weight = ? WHERE id = ?";
+        var sql = """
+                  UPDATE heroes SET name = ?, gender = ?, eyeColor = ?, race = ?,
+                   hairColor = ?, height = ?, publisher = ?, skinColor = ?,
+                   alignment = ?, weight = ? WHERE id = ?
+                """;
         statementConnection(hero, sql);
     }
 
