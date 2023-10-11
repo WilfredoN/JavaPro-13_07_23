@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @Builder
 public class Hero {
+    Long id;
     String name;
     String gender;
     String eyeColor;
