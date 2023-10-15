@@ -3,4 +3,4 @@ docker run -d ^
   -e POSTGRES_PASSWORD=hillel ^
   -p 5432:5432 ^
   -v java-pro:/var/lib/postgresql/data ^
-  postgres:latest
+  postgres:14.2
