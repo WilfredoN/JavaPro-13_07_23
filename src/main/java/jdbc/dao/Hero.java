@@ -9,12 +9,12 @@ public class Hero {
     Long id;
     String name;
     String gender;
-    String eye_color;
+    String eyeColor;
     String race;
-    String hair_color;
+    String hairColor;
     double height;
     String publisher;
-    String skin_color;
+    String skinColor;
     String alignment;
     int weight;
 }
