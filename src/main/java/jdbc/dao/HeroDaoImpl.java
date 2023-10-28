@@ -92,12 +92,12 @@ public class HeroDaoImpl implements HeroDao {
              var statement = connection.prepareStatement(sql)) {
             statement.setString(1, hero.getName());
             statement.setString(2, hero.getGender());
-            statement.setString(3, hero.getEye_color());
+            statement.setString(3, hero.getEyeColor());
             statement.setString(4, hero.getRace());
-            statement.setString(5, hero.getHair_color());
+            statement.setString(5, hero.getHairColor());
             statement.setDouble(6, hero.getHeight());
             statement.setString(7, hero.getPublisher());
-            statement.setString(8, hero.getSkin_color());
+            statement.setString(8, hero.getSkinColor());
             statement.setString(9, hero.getAlignment());
             statement.setInt(10, hero.getWeight());
             statement.executeUpdate();
