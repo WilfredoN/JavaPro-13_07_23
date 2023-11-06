@@ -1,9 +1,9 @@
 package rest;
 
 import jdbc.dao.Hero;
-import jdbc.dao.HeroDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import patterns.HeroServiceDao;
 
 import java.util.List;
 
@@ -11,30 +11,30 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class HeroController {
-    private final HeroDao heroDao;
+    private final HeroServiceDao heroService;
 
     @GetMapping("/heroes")
     public List<Hero> getHeroes() {
-        return heroDao.findAll();
+        return heroService.getHeroes();
     }
 
     @GetMapping("/heroes/{id}")
     public Hero getHero(@PathVariable long id) {
-        return heroDao.findById(id);
+        return heroService.getById(id);
     }
 
     @PostMapping("/heroes")
-    public void createHero(@RequestBody Hero hero) {
-        heroDao.create(hero);
+    public Hero createHero(@RequestBody Hero hero) {
+        return heroService.createHero(hero);
     }
 
     @PutMapping("/heroes/{id}")
-    public void updateHero(@PathVariable long id, @RequestBody Hero hero) {
-        heroDao.update(hero);
+    public Hero updateHero(@RequestBody Hero hero) {
+        return heroService.updateHero(hero);
     }
 
     @DeleteMapping("/heroes/{id}")
     public void deleteHero(@PathVariable long id) {
-        heroDao.delete(id);
+        heroService.deleteHero(id);
     }
 }

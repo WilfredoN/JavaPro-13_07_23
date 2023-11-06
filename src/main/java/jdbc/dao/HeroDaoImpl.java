@@ -57,12 +57,12 @@ public class HeroDaoImpl implements HeroDao {
     }
 
     @Override
-    public Hero findById(Long id) {
+    public List<Hero> findById(Long id) {
         var sql = "SELECT * FROM heroes WHERE id = " + id;
         try (var connection = dataSource.getConnection();
              var statement = connection.createStatement()) {
             var result = statement.executeQuery(sql);
-            return mapHeroes(result).get(0);
+            return mapHeroes(result);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -7,7 +7,7 @@ public interface HeroDao {
 
     List<Hero> findByName(String name);
 
-    Hero findById(Long id);
+    List<Hero> findById(Long id);
 
     void create(Hero hero);
 

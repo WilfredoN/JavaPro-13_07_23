@@ -1,11 +1,11 @@
 package rest;
 
-import jdbc.dao.HeroDao;
-import jdbc.dao.HeroDaoImpl;
 import org.postgresql.ds.PGSimpleDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import patterns.HeroFabric;
+import patterns.HeroServiceDao;
 
 import javax.sql.DataSource;
 
@@ -24,7 +24,7 @@ public class RestApplication {
     }
 
     @Bean
-    public HeroDao heroDao() {
-        return new HeroDaoImpl(dataSource());
+    public HeroServiceDao heroService() {
+        return HeroFabric.createServiceRest(dataSource());
     }
 }
