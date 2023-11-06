@@ -20,6 +20,13 @@ public class DummyHeroDao implements HeroDao {
                 .toList();
     }
 
+    @Override
+    public List<Hero> findById(Long id) {
+        return db.stream()
+                .filter(hero -> hero.getId().equals(id))
+                .toList();
+    }
+
     public void create(Hero hero) {
         db.add(hero);
     }
