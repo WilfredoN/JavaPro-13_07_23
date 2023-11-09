@@ -24,4 +24,14 @@ public class HeroService {
                         .build())
                 .toList();
     }
+
+    public HeroDTO getHero(long id) {
+        return heroDao.findById(id).stream()
+                .findFirst()
+                .map(hero -> new HeroDtoBuilder()
+                        .withName(hero.getName())
+                        .withMovies(heroMovieService.getPlayedIn(hero.getName()))
+                        .build())
+                .orElseThrow(() -> new RuntimeException("Hero not found"));
+    }
 }
