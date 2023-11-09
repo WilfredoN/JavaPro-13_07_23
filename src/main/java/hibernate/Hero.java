@@ -1,15 +1,17 @@
 package hibernate;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "heroes")
 @Builder
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Hero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
