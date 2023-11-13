@@ -1,29 +1,44 @@
 package hibernate;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "heroes")
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Hero {
+
+    @Column(name = "eye_color")
+    private String eyeColor;
+    @Column(name = "hair_color")
+    private String hairColor;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String gender;
-    private String eyeColor;
+    @Column(name = "skin_color")
+    private String skinColor;
     private String race;
-    private String hairColor;
+    public Hero() {
+    }
     private double height;
     private String publisher;
-    private String skinColor;
+    public Hero(String name, String gender, String eyeColor, String race,
+                String hairColor, double height, String publisher, String skinColor,
+                String alignment, int weight) {
+        this.name = name;
+        this.gender = gender;
+        this.eyeColor = eyeColor;
+        this.race = race;
+        this.hairColor = hairColor;
+        this.height = height;
+        this.publisher = publisher;
+        this.skinColor = skinColor;
+        this.alignment = alignment;
+        this.weight = weight;
+    }
     private String alignment;
     private int weight;
 }
