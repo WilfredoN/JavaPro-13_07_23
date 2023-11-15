@@ -29,6 +29,7 @@ public class HeroDaoImpl implements HeroDao {
         var heroes = new ArrayList<Hero>();
         while (result.next()) {
             heroes.add(Hero.builder()
+                    .id(result.getLong("id"))
                     .name(result.getString("name"))
                     .gender(result.getString("gender"))
                     .eyeColor(result.getString("eye_color"))

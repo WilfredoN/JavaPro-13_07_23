@@ -23,7 +23,7 @@ public class DummyHeroDao implements HeroDao {
     @Override
     public List<Hero> findById(Long id) {
         return db.stream()
-                .filter(hero -> hero.getId().equals(id))
+                .filter(hero -> hero.getId() == id)
                 .toList();
     }
 
@@ -38,7 +38,7 @@ public class DummyHeroDao implements HeroDao {
 
     public boolean delete(Long id) {
         return db.remove(db.stream()
-                .filter(hero -> hero.getId().equals(id))
+                .filter(hero -> hero.getId() == id)
                 .findFirst()
                 .orElseThrow());
     }

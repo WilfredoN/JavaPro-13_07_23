@@ -72,19 +72,19 @@ GROUP BY alignment;
 SELECT publisher AS top5_publishers, COUNT(*)
 FROM heroes
 GROUP BY publisher
-ORDER BY count DESC, publisher
+ORDER BY count(*) DESC, publisher
 LIMIT 5;
 
 SELECT hair_color AS top3_hair_colors, COUNT(*)
 FROM heroes
 GROUP BY hair_color
-ORDER BY count DESC, hair_color
+ORDER BY count(*) DESC, hair_color
 LIMIT 3;
 
 SELECT eye_color AS top_eye_color, COUNT(*)
 FROM heroes
 GROUP BY eye_color
-ORDER BY count DESC, eye_color
+ORDER BY count(*) DESC, eye_color
 LIMIT 1;
 
 
