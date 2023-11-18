@@ -47,7 +47,6 @@ public class HeroServiceDao {
     public Hero update(Hero heroDTO) {
         Hero baseHero = getById(heroDTO.getId());
         Hero updatedHero = baseHero.toBuilder()
-                .id(heroDTO.getId())
                 .name(heroDTO.getName())
                 .gender(heroDTO.getGender())
                 .eyeColor(heroDTO.getEyeColor())

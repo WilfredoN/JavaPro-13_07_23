@@ -35,6 +35,3 @@ test {
 jar {
     enabled = false
 }
-springBoot {
-    mainClass = 'java/mvc/MvcApplication.java'
-}
