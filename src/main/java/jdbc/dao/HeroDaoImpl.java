@@ -72,8 +72,8 @@ public class HeroDaoImpl implements HeroDao {
     @Override
     public void create(Hero hero) {
         var sql = """
-                "INSERT INTO heroes (name, gender, eyeColor, race, hairColor, height, publisher" +
-                ", skinColor, alignment, weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)" +
+                INSERT INTO heroes (name, gender, eye_color, race, hair_color, height, publisher,
+                skin_color, alignment, weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
                 """;
         statementConnection(hero, sql);
     }
@@ -81,8 +81,8 @@ public class HeroDaoImpl implements HeroDao {
     @Override
     public void update(Hero hero) {
         var sql = """
-                  UPDATE heroes SET name = ?, gender = ?, eyeColor = ?, race = ?,
-                   hairColor = ?, height = ?, publisher = ?, skinColor = ?,
+                  UPDATE heroes SET name = ?, gender = ?, eye_color = ?, race = ?,
+                   hair_color = ?, height = ?, publisher = ?, skin_color = ?,
                    alignment = ?, weight = ? WHERE id = ?
                 """;
         statementConnection(hero, sql);
@@ -101,6 +101,9 @@ public class HeroDaoImpl implements HeroDao {
             statement.setString(8, hero.getSkinColor());
             statement.setString(9, hero.getAlignment());
             statement.setInt(10, hero.getWeight());
+            statement.setLong(11, hero.getId());
+
+            System.out.println(statement);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

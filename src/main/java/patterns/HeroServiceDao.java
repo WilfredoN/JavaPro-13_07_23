@@ -34,7 +34,7 @@ public class HeroServiceDao {
 
     public Hero createHero(Hero hero) {
         heroDao.create(hero);
-        return heroDao.findByName(hero.getName()).get(0);
+        return findLatestByName(hero);
     }
 
     private Hero findLatestByName(Hero hero) {
@@ -44,30 +44,23 @@ public class HeroServiceDao {
                 .orElseThrow(() -> new RuntimeException("Hero not found"));
     }
 
-    public Hero updateHero(Hero hero) {
-        heroDao.update(hero);
-        return findLatestByName(hero);
-    }
-
-    public void update(Long id, Hero heroDTO) {
-        Hero baseHero = getById(id);
-        if (baseHero != null) {
-            Hero updatedHero = baseHero.toBuilder()
-                    .id(heroDTO.getId())
-                    .name(heroDTO.getName())
-                    .gender(heroDTO.getGender())
-                    .eyeColor(heroDTO.getEyeColor())
-                    .race(heroDTO.getRace())
-                    .hairColor(heroDTO.getHairColor())
-                    .height(heroDTO.getHeight())
-                    .publisher(heroDTO.getPublisher())
-                    .skinColor(heroDTO.getSkinColor())
-                    .alignment(heroDTO.getAlignment())
-                    .weight(heroDTO.getWeight())
-                    .build();
-
-            heroDao.update(updatedHero);
-        }
+    public Hero update(Hero heroDTO) {
+        Hero baseHero = getById(heroDTO.getId());
+        Hero updatedHero = baseHero.toBuilder()
+                .id(heroDTO.getId())
+                .name(heroDTO.getName())
+                .gender(heroDTO.getGender())
+                .eyeColor(heroDTO.getEyeColor())
+                .race(heroDTO.getRace())
+                .hairColor(heroDTO.getHairColor())
+                .height(heroDTO.getHeight())
+                .publisher(heroDTO.getPublisher())
+                .skinColor(heroDTO.getSkinColor())
+                .alignment(heroDTO.getAlignment())
+                .weight(heroDTO.getWeight())
+                .build();
+        heroDao.update(updatedHero);
+        return findLatestByName(updatedHero);
     }
 
     public void deleteHero(long id) {

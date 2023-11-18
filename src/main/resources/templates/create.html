@@ -2,7 +2,7 @@
 <body>
 <p>Edit a hero:</p>
 <form action="#" method="post"
-      th:action="@{/create}"
+      th:action="@{/save}"
       th:object="${hero}">
     <label>Name: <input th:field="*{name}" type="text"/></label><br/>
     <label>Gender: <input th:field="*{gender}" type="text"/></label><br/>

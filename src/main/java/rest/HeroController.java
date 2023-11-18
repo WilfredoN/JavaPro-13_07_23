@@ -30,7 +30,7 @@ public class HeroController {
 
     @PutMapping("/heroes/{id}")
     public Hero updateHero(@RequestBody Hero hero) {
-        return heroService.updateHero(hero);
+        return heroService.update(hero);
     }
 
     @DeleteMapping("/heroes/{id}")
