@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS users;
+CREATE TABLE users
+(
+    id        INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    uid       VARCHAR(255) NOT NULL,
+    name      VARCHAR(255) NOT NULL,
+    email     VARCHAR(255) NOT NULL,
+    user_role VARCHAR(255) NOT NULL
+);
