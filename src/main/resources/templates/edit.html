@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>Edit a hero:</p>
+<form action="#"
+      method="post"
+      th:action="@{/update/{id}(id=${hero.id})}"
+      th:object="${hero}">
+    <label>Name: <input id="name" th:field="*{name}" type="text"/></label><br/>
+    <label>Gender: <input id="gender" th:field="*{gender}" type="text"/></label><br/>
+    <label>Eye color: <input id="eyeColor" th:field="*{eyeColor}" type="text"/></label><br/>
+    <label>Race: <input id="race" th:field="*{race}" type="text"/></label><br/>
+    <label>Hair color: <input id="hairColor" th:field="*{hairColor}" type="text"/></label><br/>
+    <label>Height: <input id="height" th:field="*{height}" type="text"/></label><br/>
+    <label>Publisher: <input id="publisher" th:field="*{publisher}" type="text"/></label><br/>
+    <label>Skin color: <input id="skinColor" th:field="*{skinColor}" type="text"/></label><br/>
+    <label>Alignment: <input id="alignment" th:field="*{alignment}" type="text"/></label><br/>
+    <label>Weight: <input id="weight" th:field="*{weight}" type="text"/></label><br/>
+    <input type="submit" value="Update"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p th:text="'Welcome!'"/>
+
+<p><a href="/create">Create a new hero</a></p>
+<div th:switch="${heroes}">
+    <h2 th:case="null">No heroes found.</h2>
+    <div th:case="*">
+        <h2>Heroes</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>gender</th>
+                <th>eyeColor</th>
+                <th>race</th>
+                <th>hairColor</th>
+                <th>height</th>
+                <th>publisher</th>
+                <th>skinColor</th>
+                <th>alignment</th>
+                <th>weight</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="heroes: ${heroes}">
+                <td th:text="${heroes.id}"></td>
+                <td th:text="${heroes.name}"></td>
+                <td th:text="${heroes.gender}"></td>
+                <td th:text="${heroes.eyeColor}"></td>
+                <td th:text="${heroes.race}"></td>
+                <td th:text="${heroes.hairColor}"></td>
+                <td th:text="${heroes.height}"></td>
+                <td th:text="${heroes.publisher}"></td>
+                <td th:text="${heroes.skinColor}"></td>
+                <td th:text="${heroes.alignment}"></td>
+                <td th:text="${heroes.weight}"></td>
+                <td><a th:href="@{/edit/{id}(id=${heroes.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${heroes.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

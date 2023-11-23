@@ -39,7 +39,6 @@ public class HeroDTO {
                 ", movies=" + movies +
                 '}';
     }
-
     public static class HeroDtoBuilder {
         private String name;
         private List<String> movies = new ArrayList<>();

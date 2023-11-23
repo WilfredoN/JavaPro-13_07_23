@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>Edit a hero:</p>
+<form action="#" method="post"
+      th:action="@{/save}"
+      th:object="${hero}">
+    <label>Name: <input th:field="*{name}" type="text"/></label><br/>
+    <label>Gender: <input th:field="*{gender}" type="text"/></label><br/>
+    <label>Eye color: <input th:field="*{eyeColor}" type="text"/></label><br/>
+    <label>Race: <input th:field="*{race}" type="text"/></label><br/>
+    <label>Hair color: <input th:field="*{hairColor}" type="text"/></label><br/>
+    <label>Height: <input th:field="*{height}" type="text"/></label><br/>
+    <label>Publisher: <input th:field="*{publisher}" type="text"/></label><br/>
+    <label>Skin color: <input th:field="*{skinColor}" type="text"/></label><br/>
+    <label>Alignment: <input th:field="*{alignment}" type="text"/></label><br/>
+    <label>Weight: <input th:field="*{weight}" type="text"/></label><br/>
+    <input type="submit" value="Save"/>
+</form>
+</body>
+</html>

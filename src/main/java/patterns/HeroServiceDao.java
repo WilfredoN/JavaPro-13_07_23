@@ -34,12 +34,32 @@ public class HeroServiceDao {
 
     public Hero createHero(Hero hero) {
         heroDao.create(hero);
-        return heroDao.findByName(hero.getName()).get(0);
+        return findLatestByName(hero);
     }
 
-    public Hero updateHero(Hero hero) {
-        heroDao.update(hero);
-        return heroDao.findByName(hero.getName()).get(0);
+    private Hero findLatestByName(Hero hero) {
+        return heroDao.findByName(hero.getName())
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Hero not found"));
+    }
+
+    public Hero update(Hero heroDTO) {
+        Hero baseHero = getById(heroDTO.getId());
+        Hero updatedHero = baseHero.toBuilder()
+                .name(heroDTO.getName())
+                .gender(heroDTO.getGender())
+                .eyeColor(heroDTO.getEyeColor())
+                .race(heroDTO.getRace())
+                .hairColor(heroDTO.getHairColor())
+                .height(heroDTO.getHeight())
+                .publisher(heroDTO.getPublisher())
+                .skinColor(heroDTO.getSkinColor())
+                .alignment(heroDTO.getAlignment())
+                .weight(heroDTO.getWeight())
+                .build();
+        heroDao.update(updatedHero);
+        return findLatestByName(updatedHero);
     }
 
     public void deleteHero(long id) {
