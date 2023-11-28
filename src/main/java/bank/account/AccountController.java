@@ -18,8 +18,8 @@ public class AccountController {
     }
 
     @GetMapping("/person/{personId}/accounts")
-    public AccountDTO getAccount(@PathVariable("personId") String personid) {
-        return accountService.findByUid(personid);
+    public List<AccountDTO> getAccountsOfPerson(@PathVariable("personId") String personid) {
+        return accountService.getAccountsOfPerson(personid);
     }
 
     @PostMapping("/person/{personId}/accounts")
