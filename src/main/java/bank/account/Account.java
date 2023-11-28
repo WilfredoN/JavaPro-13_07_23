@@ -20,5 +20,5 @@ public class Account extends BaseEntity {
     private int balance;
     @ManyToOne
     @JoinColumn(name = "person_id")
-    private Person personId;
+    private Person person;
 }

@@ -22,7 +22,7 @@ public class AccountService {
 
     private AccountDTO convertAccount(Account account) {
         return new AccountDTO(account.getUid(), account.getIban(),
-                account.getBalance(), account.getPersonId().getId());
+                account.getBalance(), account.getPerson().getUid());
     }
 
     public AccountDTO findByUid(String uid) {
@@ -34,7 +34,7 @@ public class AccountService {
     public List<AccountDTO> findByPersonId(String personId) {
         var person = personRepository.findByUid(personId)
                 .orElseThrow();
-        return accountRepository.findByPersonId(person).stream()
+        return accountRepository.findByPerson(person).stream()
                 .map(this::convertAccount)
                 .toList();
     }
@@ -45,13 +45,13 @@ public class AccountService {
     }
 
     public AccountDTO create(AccountDTO request) {
-        var person = personRepository.findByUid(request.personId().toString())
+        var person = personRepository.findByUid(request.personId())
                 .orElseThrow();
         return convertAccount(accountRepository.save(Account.builder()
                 .uid(UUID.randomUUID().toString())
                 .iban(request.iban())
                 .balance(request.balance())
-                .personId(person)
+                .person(person)
                 .build()));
     }
 

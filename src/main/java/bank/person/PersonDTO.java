@@ -2,6 +2,7 @@ package bank.person;
 
 public record PersonDTO(
         String id,
-        String name
+        String name,
+        String email
 ) {
 }

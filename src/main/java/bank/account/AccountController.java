@@ -17,18 +17,18 @@ public class AccountController {
         return accountService.getAccounts(pageable);
     }
 
-    @GetMapping("/person/{person_id}/accounts")
-    public AccountDTO getAccount(@PathVariable("person_id") String personid) {
+    @GetMapping("/person/{personId}/accounts")
+    public AccountDTO getAccount(@PathVariable("personId") String personid) {
         return accountService.findByUid(personid);
     }
 
-    @PostMapping("/person/{person_id}/accounts")
-    public AccountDTO createAccount(@RequestBody AccountDTO request, @PathVariable String person_id) {
+    @PostMapping("/person/{personId}/accounts")
+    public AccountDTO createAccount(@RequestBody AccountDTO request, @PathVariable String personId) {
         return accountService.create(request);
     }
 
-    @PutMapping("/person/{person_id}/accounts/{id}")
-    public AccountDTO updateAccount(@PathVariable("id") String id, @RequestBody AccountDTO request, @PathVariable String person_id) {
+    @PutMapping("/person/{personId}/accounts/{id}")
+    public AccountDTO updateAccount(@PathVariable("id") String id, @RequestBody AccountDTO request, @PathVariable String personId) {
         return accountService.update(id, request);
     }
 
@@ -36,5 +36,4 @@ public class AccountController {
     public void deleteAccount(@PathVariable("id") String id) {
         accountService.delete(id);
     }
-
 }

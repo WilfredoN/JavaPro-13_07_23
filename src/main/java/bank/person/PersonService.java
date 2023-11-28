@@ -19,7 +19,7 @@ public class PersonService {
     }
 
     private PersonDTO convertPerson(Person person) {
-        return new PersonDTO(person.getUid(), person.getName());
+        return new PersonDTO(person.getUid(), person.getName(), person.getEmail());
     }
 
     public PersonDTO getPerson(String uid) {
