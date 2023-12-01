@@ -47,8 +47,8 @@ public class AccountService {
                 .orElseThrow();
     }
 
-    public AccountDTO create(AccountDTO request) {
-        var person = personRepository.findByUid(request.personId())
+    public AccountDTO create(AccountDTO request, String personId) {
+        var person = personRepository.findByUid(personId)
                 .orElseThrow();
         return convertAccount(accountRepository.save(Account.builder()
                 .uid(UUID.randomUUID().toString())

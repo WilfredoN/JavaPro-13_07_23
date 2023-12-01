@@ -24,7 +24,7 @@ public class AccountController {
 
     @PostMapping("/person/{personId}/accounts")
     public AccountDTO createAccount(@RequestBody AccountDTO request, @PathVariable String personId) {
-        return accountService.create(request);
+        return accountService.create(request, personId);
     }
 
     @PutMapping("/person/{personId}/accounts/{id}")
