@@ -29,8 +29,6 @@ public class PersonService {
     }
 
     public PersonDTO create(PersonDTO request) {
-        if (personRepository.existsByUid(request.id()))
-            throw new IllegalArgumentException("Person already exists");
         return convertPerson(personRepository.save(Person.builder()
                 .uid(UUID.randomUUID().toString())
                 .name(request.name())

@@ -123,7 +123,6 @@ class AccountControllerIntegrationTest {
                         .balance(1005)
                         .personId(person.getUid())
                         .build())));
-        var getRequest = get("/api/person/" + person.getUid() + "/accounts");
     }
 
     @Test
@@ -139,6 +138,10 @@ class AccountControllerIntegrationTest {
                 .balance(1000)
                 .iban("UA01INHO0000000001")
                 .build());
+        var check = get("/api/person/" + person.getUid() + "/accounts");
+        mockMvc.perform(check)
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
         var request = delete("/api/" + account.getUid());
         mockMvc.perform(request)
                 .andExpect(status().isOk());
