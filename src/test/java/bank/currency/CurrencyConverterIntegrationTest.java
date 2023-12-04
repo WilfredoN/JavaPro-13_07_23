@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@ActiveProfiles("testing")
+@ActiveProfiles("test")
 class CurrencyConverterIntegrationTest {
     @Autowired
     protected MockMvc mockMvc;
@@ -40,17 +40,6 @@ class CurrencyConverterIntegrationTest {
 
     @Test
     void shouldConvert() throws Exception {
-        /*var bodyUSD = CurrencyApiData.builder()
-                .code("USD")
-                .value(2.0)
-                .build();
-        var bodyEUR = CurrencyApiData.builder()
-                .code("EUR")
-                .value(1.0)
-                .build();
-        Map<String, CurrencyApiData> dataMap = new HashMap<>();
-        dataMap.put("USD", bodyUSD);
-        dataMap.put("EUR", bodyEUR);*/
 
         var response = CurrencyApiResponse.builder()
                 .data(Map.of("EUR", CurrencyApiData.builder()

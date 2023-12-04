@@ -17,13 +17,9 @@ public class CurrencyController {
 
     @GetMapping("/convert")
     public double getCurrencyConverter(
-            @RequestParam("from") String fromCurrency,
-            @RequestParam("to") String toCurrency,
+            @RequestParam("from") Currency fromCurrency,
+            @RequestParam("to") Currency toCurrency,
             @RequestParam("amount") double amount) {
-
-        Currency from = Currency.getInstance(fromCurrency);
-        Currency to = Currency.getInstance(toCurrency);
-
-        return converter.convert(from, to, amount);
+        return converter.convert(fromCurrency, toCurrency, amount);
     }
 }
