@@ -25,10 +25,13 @@ public class AccountService {
                 account.getBalance(), account.getPerson().getUid());
     }
 
-    public AccountDTO findByUid(String uid) {
-        return accountRepository.findByUid(uid)
-                .map(this::convertAccount)
+    public List<AccountDTO> getAccountsOfPerson(String uid) {
+        var person = personRepository.findByUid(uid)
                 .orElseThrow();
+        return accountRepository.findAll().stream()
+                .map(this::convertAccount)
+                .filter(account -> account.personId().equals(person.getUid()))
+                .toList();
     }
 
     public List<AccountDTO> findByPersonId(String personId) {
@@ -44,8 +47,8 @@ public class AccountService {
                 .orElseThrow();
     }
 
-    public AccountDTO create(AccountDTO request) {
-        var person = personRepository.findByUid(request.personId())
+    public AccountDTO create(AccountDTO request, String personId) {
+        var person = personRepository.findByUid(personId)
                 .orElseThrow();
         return convertAccount(accountRepository.save(Account.builder()
                 .uid(UUID.randomUUID().toString())

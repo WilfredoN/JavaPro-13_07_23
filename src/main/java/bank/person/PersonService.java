@@ -32,6 +32,7 @@ public class PersonService {
         return convertPerson(personRepository.save(Person.builder()
                 .uid(UUID.randomUUID().toString())
                 .name(request.name())
+                .email(request.email())
                 .build()));
     }
 
@@ -39,6 +40,7 @@ public class PersonService {
         return personRepository.findByUid(id)
                 .map(person -> {
                     person.setName(request.name());
+                    person.setEmail(request.email());
                     return convertPerson(personRepository.save(person));
                 })
                 .orElseThrow();
