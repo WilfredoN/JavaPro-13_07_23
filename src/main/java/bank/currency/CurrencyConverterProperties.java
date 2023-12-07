@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @NoArgsConstructor
 @AllArgsConstructor
 @Configuration
-@ConfigurationProperties(prefix = "currencyapi")
+@ConfigurationProperties(prefix = "currency.converter")
 public class CurrencyConverterProperties {
     private String url;
     private String key;
