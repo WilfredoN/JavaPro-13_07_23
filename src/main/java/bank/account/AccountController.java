@@ -18,13 +18,13 @@ public class AccountController {
     }
 
     @GetMapping("/person/{personId}/accounts")
-    public AccountDTO getAccount(@PathVariable("personId") String personid) {
-        return accountService.findByUid(personid);
+    public List<AccountDTO> getAccountsOfPerson(@PathVariable("personId") String personid) {
+        return accountService.getAccountsOfPerson(personid);
     }
 
     @PostMapping("/person/{personId}/accounts")
     public AccountDTO createAccount(@RequestBody AccountDTO request, @PathVariable String personId) {
-        return accountService.create(request);
+        return accountService.create(request, personId);
     }
 
     @PutMapping("/person/{personId}/accounts/{id}")
