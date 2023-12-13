@@ -2,14 +2,12 @@ package bank.currency;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Currency;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service
 public class ApiCurrencyConverter implements CurrencyConverter {
     private final WebClient webClient = WebClient.builder().build();
     private final CurrencyConverterProperties config;
