@@ -15,6 +15,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -43,20 +45,16 @@ class CardControllerIntegrationTest {
                 .balance(1000)
                 .iban("UA01INHO0000000001")
                 .build());
-        var response = cardRepository.save(Card.builder()
-                .uid("1")
-                .account(account)
-                .cvv("123")
-                .expirationDate(LocalDate.parse("2025-12-12"))
-                .pan("1234567890")
-                .pin("1234")
-                .person(person)
-                .build());
 
-        mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/cards")
-                        .param("accountId", account.getUid())
-        ).andExpect(status().isOk());
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/cards").param("accountId", account.getUid()))
+                .andExpect(status().isOk())
+                .andExpect(result -> {
+                    Card card = cardRepository.findById(account.getId()).orElse(null);
+                    assertEquals(account.getId(), card.getAccount().getId());
+                    assertEquals(4, card.getPin().length());
+                    assertTrue(card.getPin().matches("[0-9]+"));
+                    assertTrue(card.getExpirationDate().isAfter(LocalDate.now()));
+                });
     }
 
     @Test
