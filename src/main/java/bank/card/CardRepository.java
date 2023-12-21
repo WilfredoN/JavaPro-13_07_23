@@ -7,6 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface CardRepository extends JpaRepository<Card, Long> {
-    //TOOD: add custom implementations if needed
     Optional<Card> findByPan(String pan);
+    Optional<Card> findByUid(String uid);
 }

@@ -1,5 +1,6 @@
 package bank.card;
 
+import bank.account.Account;
 import bank.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +34,11 @@ public class CardService {
         return cardRepository.findByPan(pan).map(this::convertCard)
                 .orElseThrow();
     }
-
+    public Account getAccountFromCard(String uid) {
+        return cardRepository.findByUid(uid)
+                .map(Card::getAccount)
+                .orElseThrow();
+    }
     public CardDTO openCard(String accountId) {
         var account = accountRepository.findByUid(accountId)
                 .orElseThrow();
